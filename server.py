@@ -8,7 +8,7 @@ def sent_detector():
     text_to_analyse = request.args.get('textToAnalyze')
 
     if not text_to_analyse:
-        return jsonify({"error": "Missing 'text' parameter in URL"}, 400)
+        return jsonify('Invalid text! Please try again!')
     
     response = emotion_detector(text_to_analyse)
 
