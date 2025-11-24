@@ -10,14 +10,20 @@ def emotion_detector(text_to_analyse):
     formatted_response = json.loads(response.text)
     emotion_data = formatted_response["emotionPredictions"][0]["emotion"]
 
-    anger_score = emotion_data["anger"]
-    disgust_score = emotion_data["disgust"]
-    fear_score = emotion_data["fear"]
-    joy_score = emotion_data["joy"]
-    sadness_score = emotion_data["sadness"]
+    anger = emotion_data["anger"]
+    disgust = emotion_data["disgust"]
+    fear = emotion_data["fear"]
+    joy = emotion_data["joy"]
+    sadness = emotion_data["sadness"]
 
     scores = emotion_data
     dominant_emotion = max(scores, key=scores.get)
-    emotion_value = scores[dominant_emotion]
 
-    return "The given text has the emotion '{}' with a score of {}.".format(dominant_emotion, emotion_value)  
+    result = (
+        f"For the given statement, the system response is "
+        f"'anger' : {anger}, 'disgust' : {disgust}, 'fear' : {fear}, "
+        f"'joy' : {joy} and 'sadness' : {sadness}. "
+        f"The dominant emotion is {dominant_emotion}."
+    )
+
+    return result 
